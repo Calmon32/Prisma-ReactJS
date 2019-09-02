@@ -1,8 +1,8 @@
-import {database} from '../database/config'
+import { database } from '../database/config'
 
 export const startAddingPost = (post) => {
     return (dispatch) => {
-        return database.ref('posts').update({[post.id]: post}).then(() => {
+        return database.ref('posts').update({ [post.id]: post }).then(() => {
             dispatch(addPost(post))
         }).catch((error) => {
             console.log(error)
@@ -25,8 +25,12 @@ export const startLoadingPosts = () => {
 }
 
 export const startRemovingPost = (index, id) => {
+    const updates = {
+        [`posts/${id}`]: null,
+        [`comments/${id}`]: null
+    }
     return (dispatch) => {
-        return database.ref(`posts/${id}`).remove().then(() => {
+        return database.ref().update(updates).then(() => {
             dispatch(removePost(index))
         }).catch((error) => {
             console.log(error)
