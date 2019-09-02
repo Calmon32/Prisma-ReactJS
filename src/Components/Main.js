@@ -6,8 +6,13 @@ import AddPhoto from './AddPhoto'
 import Single from './Single'
 
 class Main extends Component {
+
+    componentDidMount() {
+        this.props.startLoadingPosts()
+        this.props.startLoadingComments()
+    }
+
     render() {
-        console.log(this.props)
         return  <div>
             <Title title={'PhotoWall'} />
             <Route exact path="/" render={() => (
