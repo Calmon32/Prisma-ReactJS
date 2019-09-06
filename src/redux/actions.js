@@ -1,4 +1,4 @@
-import { database } from '../database/config'
+import { database } from '../database/firebase'
 
 export const startAddingPost = (post) => {
     return (dispatch) => {
